@@ -17,7 +17,8 @@ import { Slider } from '../src'
 const styles= theme=>({
   container:{
     width:'100%',
-    height: '100%'
+    height: '100%',
+    backgroundColor: theme.palette.grey[theme.palette.type==='light'? 200:800]
   },
   button: {
     margin: theme.spacing.unit,
@@ -81,9 +82,30 @@ const styles= theme=>({
     height: 38,
     width: 38,
   },
+  gettingStarted:{
+    width: 1120,
+    padding: 20,
+    margin: '30px auto 100px'
+  },
+  gettingStartedBox:{
+    marginBottom: 20
+  },
+  '@media (max-width: 1120px)':{
+    gettingStarted:{
+      width: 900,
+    }
+  },
   '@media (max-width: 900px)':{
     musicExplame:{
       display:'none'
+    },
+    gettingStarted:{
+      width: 768
+    }
+  },
+  '@media (max-width: 768px)':{
+    gettingStarted:{
+      width: '100%'
     }
   }
 })
@@ -122,95 +144,98 @@ class App extends Component {
     const {sliderMax, sliderValue} = this.state
 
     return (
-      <div className="app" >
-        <div className={classes.container}>
-          <div className={classes.mainDesc}>  
-            <div className={classes.themePanel}>
-              <FormControlLabel
-                control={
-                  <Switch color="primary" checked={theme.palette.type === 'dark'} onChange={(e,checked)=>{onThemeChange(checked?'dark':'light')}}></Switch>
+      <div className={classes.container}>
+        <div className={classes.mainDesc}>  
+          <div className={classes.themePanel}>
+            <FormControlLabel
+              control={
+                <Switch color="primary" checked={theme.palette.type === 'dark'} onChange={(e,checked)=>{onThemeChange(checked?'dark':'light')}}></Switch>
             }
-                label="Dark Theme"></FormControlLabel>
-            </div>
-            <div className={classes.titleContainer}>
-              <Typography color="textSecondary" variant="display3">
+              label="Dark Theme"></FormControlLabel>
+          </div>
+          <div className={classes.titleContainer}>
+            <Typography color="textSecondary" variant="display3">
             Material-UI Slider
-              </Typography>
-              <Button variant="raised" size="small" className={classes.button} href="https://acehubert.github.io/material-ui-slider/">
-                <svg style={{width:18,height:18,marginRight:5}} preserveAspectRatio="xMidYMid" width="34" height="33.19" viewBox="0 0 34 33.19">
-                  <g id="surface1">
-                    <path  d="M17.006,0.005 C7.613,0.005 -0.002,7.540 -0.002,16.835 C-0.002,24.743 5.512,31.374 12.941,33.177 C12.939,31.096 12.933,27.138 12.931,26.994 C12.900,26.975 9.707,28.826 8.078,25.589 C7.881,25.189 7.486,23.853 6.496,23.104 C6.460,23.074 5.729,22.705 5.662,22.342 C5.654,22.291 5.709,22.185 5.781,22.159 C5.856,22.131 7.059,21.642 8.401,23.327 C8.805,23.890 9.718,26.053 12.914,24.716 C12.999,24.383 13.309,23.619 14.000,23.000 C9.241,22.438 7.254,21.046 6.579,17.020 C6.158,14.275 6.968,11.993 8.184,10.867 C8.000,10.627 7.392,8.622 8.336,6.500 C9.359,6.297 11.235,7.024 12.883,8.199 C15.208,7.367 18.990,7.167 21.136,8.199 C21.878,7.592 24.529,6.173 25.666,6.503 C26.001,7.346 26.483,9.387 25.817,10.874 C27.298,12.383 27.716,14.331 27.449,16.725 C27.121,20.352 25.042,22.573 20.000,23.000 C20.840,23.587 22.000,24.634 22.000,26.000 C22.000,27.468 22.001,30.989 22.000,33.000 C29.040,30.941 34.014,24.470 34.014,16.835 C34.014,7.540 26.399,0.005 17.006,0.005 Z" />
-                  </g>
-                </svg>
+            </Typography>
+            <Button variant="raised" size="small" className={classes.button} href="https://github.com/aceHubert/material-ui-slider">
+              <svg style={{width:18,height:18,marginRight:5}} preserveAspectRatio="xMidYMid" width="34" height="33.19" viewBox="0 0 34 33.19">
+                <g id="surface1">
+                  <path  d="M17.006,0.005 C7.613,0.005 -0.002,7.540 -0.002,16.835 C-0.002,24.743 5.512,31.374 12.941,33.177 C12.939,31.096 12.933,27.138 12.931,26.994 C12.900,26.975 9.707,28.826 8.078,25.589 C7.881,25.189 7.486,23.853 6.496,23.104 C6.460,23.074 5.729,22.705 5.662,22.342 C5.654,22.291 5.709,22.185 5.781,22.159 C5.856,22.131 7.059,21.642 8.401,23.327 C8.805,23.890 9.718,26.053 12.914,24.716 C12.999,24.383 13.309,23.619 14.000,23.000 C9.241,22.438 7.254,21.046 6.579,17.020 C6.158,14.275 6.968,11.993 8.184,10.867 C8.000,10.627 7.392,8.622 8.336,6.500 C9.359,6.297 11.235,7.024 12.883,8.199 C15.208,7.367 18.990,7.167 21.136,8.199 C21.878,7.592 24.529,6.173 25.666,6.503 C26.001,7.346 26.483,9.387 25.817,10.874 C27.298,12.383 27.716,14.331 27.449,16.725 C27.121,20.352 25.042,22.573 20.000,23.000 C20.840,23.587 22.000,24.634 22.000,26.000 C22.000,27.468 22.001,30.989 22.000,33.000 C29.040,30.941 34.014,24.470 34.014,16.835 C34.014,7.540 26.399,0.005 17.006,0.005 Z" />
+                </g>
+              </svg>
                 GitHub
-              </Button>
-              <Button color="primary" variant="raised" size="small" className={classes.button}>
+            </Button>
+            <Button color="primary" variant="raised" size="small" className={classes.button} href="#getting_started">
               Document
-              </Button>
-            </div>
-            <div className={classes.musicExplame} >
-              <Card className={classes.card}>
-                <div className={classes.details}>
-                  <CardContent className={classes.content}>
-                    <Typography variant="headline">Live From Space</Typography>
-                    <Typography variant="subheading" color="textSecondary">
+            </Button>
+          </div>
+          <div className={classes.musicExplame} >
+            <Card className={classes.card}>
+              <div className={classes.details}>
+                <CardContent className={classes.content}>
+                  <Typography variant="headline">Live From Space</Typography>
+                  <Typography variant="subheading" color="textSecondary">
                     Mac Miller
-                    </Typography>
-                  </CardContent>
-                  <div className={classes.regulator}>
-                    <Grid container spacing={16} style={{height:'100%'}}>
-                      <Grid item className={classes.regulatorItem} xs={12} sm={4}>
-                        <Slider direction="vertical" ></Slider>
-                        <Slider direction="vertical" defaultValue={100}></Slider>
-                        <Slider direction="vertical" defaultValue={50} disabled ></Slider>
-                        <Slider direction="vertical" defaultValue={80} scaleLength={20}></Slider>
-                        <Slider direction="vertical" defaultValue={-10} min={-50} max={50}></Slider>
-                      </Grid>
-                      <Grid item className={classes.regulatorItem} xs={12} sm={4}>
-                        <Slider direction="vertical" color="#39ADBD"></Slider>
-                        <Slider direction="vertical" color="#39ADBD" defaultValue={100}></Slider>
-                        <Slider direction="vertical" color="#39ADBD" defaultValue={50} disabled ></Slider>
-                        <Slider direction="vertical" color="#39ADBD" defaultValue={80} scaleLength={20}></Slider>
-                        <Slider direction="vertical" color="#39ADBD" defaultValue={-10} min={-50} max={50}></Slider>
-                      </Grid>
-                      <Grid item className={classes.regulatorItem} xs={12} sm={4}>
-                        <Slider direction="vertical" color="green" range></Slider>
-                        <Slider direction="vertical" color="green" defaultValue={[30,78]} range></Slider>
-                        <Slider direction="vertical" color="green" defaultValue={[20,50]} disabled range ></Slider>
-                        <Slider direction="vertical" color="green" defaultValue={[60,80]} scaleLength={20} range></Slider>
-                        <Slider direction="vertical" color="green" defaultValue={[-10,10]} min={-50} max={50} range></Slider>
-                      </Grid>
+                  </Typography>
+                </CardContent>
+                <div className={classes.regulator}>
+                  <Grid container spacing={16} style={{height:'100%'}}>
+                    <Grid item className={classes.regulatorItem} xs={12} sm={4}>
+                      <Slider direction="vertical" ></Slider>
+                      <Slider direction="vertical" defaultValue={100}></Slider>
+                      <Slider direction="vertical" defaultValue={50} disabled ></Slider>
+                      <Slider direction="vertical" defaultValue={80} scaleLength={20}></Slider>
+                      <Slider direction="vertical" defaultValue={-10} min={-50} max={50}></Slider>
                     </Grid>
-                  </div>
-                  <div className={classes.controls}>
-                    <IconButton aria-label="Previous">
-                      {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                    </IconButton>
-                    <IconButton aria-label="Play/pause">
-                      <PlayArrowIcon className={classes.playIcon} />
-                    </IconButton>
-                    <IconButton aria-label="Next">
-                      {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-                    </IconButton>
-                    <div className={classes.processLeft}>
-                      <Typography>{this.toTime(sliderValue)}</Typography>
-                    </div>
-                    <Slider className={classes.slider} defaultValue={sliderValue} max={sliderMax} onChange={this.handleProcess}></Slider>
-                    <div className={classes.processRight}>
-                      <Typography>{this.toTime(sliderMax)}</Typography>
-                    </div>    
-                    <IconButton aria-label="Volume">
-                      <VolumeMute />
-                    </IconButton> 
-                    <Slider className={classes.volumn} defaultValue={sliderValue} max={sliderMax}></Slider>            
-                  </div>
+                    <Grid item className={classes.regulatorItem} xs={12} sm={4}>
+                      <Slider direction="vertical" color="#39ADBD"></Slider>
+                      <Slider direction="vertical" color="#39ADBD" defaultValue={100}></Slider>
+                      <Slider direction="vertical" color="#39ADBD" defaultValue={50} disabled ></Slider>
+                      <Slider direction="vertical" color="#39ADBD" defaultValue={80} scaleLength={20}></Slider>
+                      <Slider direction="vertical" color="#39ADBD" defaultValue={-10} min={-50} max={50}></Slider>
+                    </Grid>
+                    <Grid item className={classes.regulatorItem} xs={12} sm={4}>
+                      <Slider direction="vertical" color="green" range></Slider>
+                      <Slider direction="vertical" color="green" defaultValue={[30,78]} range></Slider>
+                      <Slider direction="vertical" color="green" defaultValue={[20,50]} disabled range ></Slider>
+                      <Slider direction="vertical" color="green" defaultValue={[60,80]} scaleLength={20} range></Slider>
+                      <Slider direction="vertical" color="green" defaultValue={[-10,10]} min={-50} max={50} range></Slider>
+                    </Grid>
+                  </Grid>
                 </div>
-              </Card>
-            </div>
-          </div>      
-        </div>
+                <div className={classes.controls}>
+                  <IconButton aria-label="Previous">
+                    {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
+                  </IconButton>
+                  <IconButton aria-label="Play/pause">
+                    <PlayArrowIcon className={classes.playIcon} />
+                  </IconButton>
+                  <IconButton aria-label="Next">
+                    {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
+                  </IconButton>
+                  <div className={classes.processLeft}>
+                    <Typography>{this.toTime(sliderValue)}</Typography>
+                  </div>
+                  <Slider className={classes.slider} defaultValue={sliderValue} max={sliderMax} onChange={this.handleProcess}></Slider>
+                  <div className={classes.processRight}>
+                    <Typography>{this.toTime(sliderMax)}</Typography>
+                  </div>    
+                  <IconButton aria-label="Volume">
+                    <VolumeMute />
+                  </IconButton> 
+                  <Slider className={classes.volumn} defaultValue={sliderValue} max={sliderMax}></Slider>            
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>   
+        <div id="getting_started" className={classes.gettingStarted}>
+          <div className={classes.gettingStartedBox}>
+            <Typography variant="headline">Installation</Typography>
+          </div>
+        </div>   
       </div>
-      );
+      )
     }
   }
 

@@ -24,7 +24,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src site --quiet",
     "prepubl¡sh": "./builds/scripts/prepare.sh",
-    "_postpublish": "./builds/scripts/release.sh"
+    "postpublish": "./builds/scripts/release.sh"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -32,6 +32,7 @@
     "prop-types": "^15.6.1"
   },
   "devDependencies": {
+    "@material-ui/core": "^1.0.0",
     "@material-ui/icons": "^1.0.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
@@ -55,6 +56,8 @@
     "marked": "^0.4.0",
     "prismjs": "^1.14.0",
     "proxyquire": "^2.0.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
     "react-scripts-configs": "0.0.6"
   },
