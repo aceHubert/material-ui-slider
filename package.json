@@ -1,7 +1,7 @@
 {
   "name": "material-ui-slider",
-  "version": "0.0.1",
-  "description": "waterfall layout in react",
+  "version": "0.0.2",
+  "description": "slider fro Material-UI 1.0.0",
   "private": false,
   "author": "Hubert<yi.xiang@live.cn>",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src site --quiet",
     "prepubl¡sh": "./builds/scripts/prepare.sh",
-    "postpublish": "./builds/scripts/release.sh"
+    "_postpublish": "./builds/scripts/release.sh"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -42,6 +42,8 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "babel-runtime": "^6.26.0",
+    "babel-standalone": "^6.26.0",
+    "codemirror": "5.38.0",
     "eslint": "4.0.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-flowtype": "^2.34.1",
@@ -50,6 +52,8 @@
     "eslint-plugin-jsx-a11y": "^5.1.0",
     "eslint-plugin-react": "^7.7.0",
     "flow-bin": "0.69.0",
+    "marked": "^0.4.0",
+    "prismjs": "^1.14.0",
     "proxyquire": "^2.0.1",
     "react-hot-loader": "^4.1.2",
     "react-scripts": "1.1.4",
