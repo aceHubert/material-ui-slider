@@ -1,0 +1,63 @@
+{
+  "name": "material-ui-slider",
+  "version": "0.0.1",
+  "description": "waterfall layout in react",
+  "private": false,
+  "author": "Hubert<yi.xiang@live.cn>",
+  "license": "MIT",
+  "main": "dist/npm/es5/index.js",
+  "jsnext:main": "next.es6.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aceHubert/material-ui-slider.git"
+  },
+  "keywords": [
+    "material-ui",
+    "slider",
+    "react"
+  ],
+  "homepage": "https://acehubert.github.io/material-ui-slider/",
+  "scripts": {
+    "start": "react-scripts-configs start",
+    "build": "react-scripts-configs build",
+    "test": "react-scripts-configs test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "eslint src site --quiet",
+    "prepubl¡sh": "./builds/scripts/prepare.sh",
+    "postpublish": "./builds/scripts/release.sh"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "lodash": "^4.17.10",
+    "prop-types": "^15.6.1"
+  },
+  "devDependencies": {
+    "@material-ui/icons": "^1.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "eslint": "4.0.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-flowtype": "^2.34.1",
+    "eslint-plugin-html": "^4.0.2",
+    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-jsx-a11y": "^5.1.0",
+    "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "0.69.0",
+    "proxyquire": "^2.0.1",
+    "react-hot-loader": "^4.1.2",
+    "react-scripts": "1.1.4",
+    "react-scripts-configs": "0.0.6"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^1.0.0",
+    "react": "*",
+    "react-dom": "*"
+  }
+}

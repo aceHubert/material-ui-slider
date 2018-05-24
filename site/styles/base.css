@@ -1,0 +1,30 @@
+
+/*滚动条样式*/
+::-webkit-scrollbar{
+  height: 8px;
+  width: 5px!important;
+  background: rgba(148,151,153,0.20);
+}
+::-webkit-scrollbar-thumb{
+  border-radius: 5px;
+  background: rgba(179,179,179,0.80);
+}
+::-webkit-scrollbar:horizontal{
+  height:8px!important;
+  margin-bottom:2px
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+html,body, #root{
+  height: 100%;
+}
+
+.app{
+  width:100%;
+  height: 100%;
+}
