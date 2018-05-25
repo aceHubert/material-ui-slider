@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Switch from '@material-ui/core/Switch'
+import Hidden from '@material-ui/core/Hidden'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow'
@@ -27,7 +27,7 @@ const styles= theme=>({
     width:'100%',
     textAlign:'center',
     position:'absolute',
-    top: '30%'
+    top: '20%'
   },
   mainDesc:{
     width:'100%',
@@ -42,7 +42,7 @@ const styles= theme=>({
     top: 30
   },
   musicExplame:{
-    width:900,
+    width: 900,
     position:'absolute',
     left: '50%',
     bottom: 50,
@@ -66,8 +66,8 @@ const styles= theme=>({
     paddingBottom: theme.spacing.unit,
     paddingRight: theme.spacing.unit,
   },  
-  regulatorItem:{
-    height: 180,
+  regulator:{
+    height: 120,
     marginTop:10,
     textAlign:'center'
   },
@@ -96,8 +96,11 @@ const styles= theme=>({
     }
   },
   '@media (max-width: 900px)':{
+    titleContainer:{
+      top:'15%'
+    },
     musicExplame:{
-      display:'none'
+      width: '100%'
     },
     gettingStarted:{
       width: 768
@@ -155,7 +158,9 @@ class App extends Component {
           </div>
           <div className={classes.titleContainer}>
             <Typography color="textSecondary" variant="display3">
-            Material-UI Slider
+            Material-UI 
+            </Typography>  <Typography color="textSecondary" variant="display3">
+            Slider
             </Typography>
             <Button variant="raised" size="small" className={classes.button} href="https://github.com/aceHubert/material-ui-slider">
               <svg style={{width:18,height:18,marginRight:5}} preserveAspectRatio="xMidYMid" width="34" height="33.19" viewBox="0 0 34 33.19">
@@ -179,29 +184,27 @@ class App extends Component {
                   </Typography>
                 </CardContent>
                 <div className={classes.regulator}>
-                  <Grid container spacing={16} style={{height:'100%'}}>
-                    <Grid item className={classes.regulatorItem} xs={12} sm={4}>
-                      <Slider direction="vertical" ></Slider>
-                      <Slider direction="vertical" defaultValue={100}></Slider>
-                      <Slider direction="vertical" defaultValue={50} disabled ></Slider>
-                      <Slider direction="vertical" defaultValue={80} scaleLength={20}></Slider>
-                      <Slider direction="vertical" defaultValue={-10} min={-50} max={50}></Slider>
-                    </Grid>
-                    <Grid item className={classes.regulatorItem} xs={12} sm={4}>
-                      <Slider direction="vertical" color="#39ADBD"></Slider>
-                      <Slider direction="vertical" color="#39ADBD" defaultValue={100}></Slider>
-                      <Slider direction="vertical" color="#39ADBD" defaultValue={50} disabled ></Slider>
-                      <Slider direction="vertical" color="#39ADBD" defaultValue={80} scaleLength={20}></Slider>
-                      <Slider direction="vertical" color="#39ADBD" defaultValue={-10} min={-50} max={50}></Slider>
-                    </Grid>
-                    <Grid item className={classes.regulatorItem} xs={12} sm={4}>
-                      <Slider direction="vertical" color="green" range></Slider>
-                      <Slider direction="vertical" color="green" defaultValue={[30,78]} range></Slider>
-                      <Slider direction="vertical" color="green" defaultValue={[20,50]} disabled range ></Slider>
-                      <Slider direction="vertical" color="green" defaultValue={[60,80]} scaleLength={20} range></Slider>
-                      <Slider direction="vertical" color="green" defaultValue={[-10,10]} min={-50} max={50} range></Slider>
-                    </Grid>
-                  </Grid>
+                  <Slider direction="vertical" ></Slider>
+                  <Hidden smDown >
+                    <Slider direction="vertical" defaultValue={100}></Slider> 
+                  </Hidden>                
+                  <Slider direction="vertical" defaultValue={50} disabled ></Slider>
+                  <Hidden smDown >
+                    <Slider direction="vertical" defaultValue={80} scaleLength={20}></Slider>
+                    <Slider direction="vertical" defaultValue={-10} min={-50} max={50}></Slider>                 
+                    <Slider direction="vertical" color="#39ADBD"></Slider>         
+                    <Slider direction="vertical" color="#39ADBD" defaultValue={100}></Slider>                
+                    <Slider direction="vertical" color="#39ADBD" defaultValue={50} disabled ></Slider>  
+                  </Hidden>               
+                  <Slider direction="vertical" color="#39ADBD" defaultValue={80} scaleLength={20}></Slider>
+                  <Slider direction="vertical" color="#39ADBD" defaultValue={-10} min={-50} max={50}></Slider>                  
+                  <Slider direction="vertical" color="green" range></Slider>
+                  <Slider direction="vertical" color="green" defaultValue={[30,78]} range></Slider>
+                  <Hidden smDown>
+                    <Slider direction="vertical" color="green" defaultValue={[20,50]} disabled range ></Slider>
+                    <Slider direction="vertical" color="green" defaultValue={[60,80]} scaleLength={20} range></Slider>
+                    <Slider direction="vertical" color="green" defaultValue={[-10,10]} min={-50} max={50} range></Slider>
+                  </Hidden>
                 </div>
                 <div className={classes.controls}>
                   <IconButton aria-label="Previous">
@@ -219,11 +222,13 @@ class App extends Component {
                   <Slider className={classes.slider} defaultValue={sliderValue} max={sliderMax} onChange={this.handleProcess}></Slider>
                   <div className={classes.processRight}>
                     <Typography>{this.toTime(sliderMax)}</Typography>
-                  </div>    
-                  <IconButton aria-label="Volume">
-                    <VolumeMute />
-                  </IconButton> 
-                  <Slider className={classes.volumn} defaultValue={sliderValue} max={sliderMax}></Slider>            
+                  </div>  
+                  <Hidden smDown>  
+                    <IconButton aria-label="Volume">
+                      <VolumeMute />
+                    </IconButton> 
+                    <Slider className={classes.volumn} defaultValue={sliderValue} max={sliderMax}></Slider>            
+                  </Hidden>
                 </div>
               </div>
             </Card>
