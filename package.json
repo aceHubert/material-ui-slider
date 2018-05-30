@@ -59,7 +59,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
-    "react-scripts-configs": "0.0.6"
+    "react-scripts-configs": "0.0.9"
   },
   "peerDependencies": {
     "@material-ui/core": "^1.0.0",

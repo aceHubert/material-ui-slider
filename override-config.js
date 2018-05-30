@@ -5,7 +5,10 @@ const fs = require('fs');
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
-module.exports = (config) => {
+module.exports = (config, env) => {
+  if(env==='test'){
+    return config;
+  }
   //移出ModuleScopePlugin插件的目录检测
   config.resolve.plugins.forEach((plugin,idx)=>{
     if(plugin.hasOwnProperty('appSrc') && plugin.hasOwnProperty('allowedFiles'))
@@ -26,6 +29,5 @@ module.exports = (config) => {
       })
     }
   }) 
-  //console.log(JSON.stringify(config))
   return config;
 }

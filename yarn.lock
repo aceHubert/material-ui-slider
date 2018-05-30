@@ -6249,9 +6249,9 @@ react-popper@^0.10.0:
     popper.js "^1.14.1"
     prop-types "^15.6.1"
 
-react-scripts-configs@0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/react-scripts-configs/-/react-scripts-configs-0.0.6.tgz#9a9821a46e8dee87a5155ee7be46cf4c73b6794a"
+react-scripts-configs@0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/react-scripts-configs/-/react-scripts-configs-0.0.9.tgz#328d9805a45840e96b37f8e0175cd0d0650b8634"
 
 react-scripts@1.1.4:
   version "1.1.4"
