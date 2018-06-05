@@ -21,8 +21,6 @@ Here's a quick example to get you started:
 ### basic
 
 ::: demo 
-=== extra
-===
 ``` javascript
   render() {
     return <div style={{width:768,maxWidth:'100%'}}>
