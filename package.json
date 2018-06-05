@@ -1,6 +1,6 @@
 {
   "name": "material-ui-slider",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "slider fro Material-UI 1.0.0",
   "private": false,
   "author": "Hubert<yi.xiang@live.cn>",
@@ -56,6 +56,7 @@
     "marked": "^0.4.0",
     "prismjs": "^1.14.0",
     "proxyquire": "^2.0.1",
+    "raw-loader": "^0.5.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
