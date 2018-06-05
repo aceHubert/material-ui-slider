@@ -8,7 +8,8 @@ import 'codemirror/mode/jsx/jsx'
 import 'codemirror/keymap/sublime'
 import 'codemirror/addon/comment/comment'
 import 'codemirror/lib/codemirror.css'
-import './style.scss'
+import './light.css'
+import './dark.css'
 
 type Props = {  
   theme: string,
@@ -26,8 +27,8 @@ export default class Editor extends Component<Props> {
   timeout: any;
 
   static defaultProps={
-    mode: 'js',
-    theme: 'sublime',
+    mode: 'jsx',
+    theme: 'light',
     lineNumbers: false,
     dragDrop:false
   }
@@ -37,8 +38,8 @@ export default class Editor extends Component<Props> {
 
     this.cm = CodeMirror(this.editor, {
       mode: mode,
-      theme: theme,
-      keyMap: theme,
+      theme: theme || 'light',
+      keyMap: 'sublime',
       viewportMargin: Infinity,
       lineNumbers: lineNumbers,
       dragDrop: dragDrop
@@ -55,6 +56,18 @@ export default class Editor extends Component<Props> {
         }, 300);
       }
     })
+  }
+
+  componentWillReceiveProps(nextProps: Props){
+    for (const key in nextProps) {
+      if (nextProps.hasOwnProperty(key)) {
+        const prop = nextProps[key];
+        if(prop !== this.props[key])
+        {
+          this.cm.setOption(key,prop);
+        }
+      }
+    }
   }
 
   render(): Node {

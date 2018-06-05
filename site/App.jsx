@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
-import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import React, {Component} from 'react'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 import Root from './Root'
 
 class App extends Component { 
@@ -8,11 +9,12 @@ class App extends Component {
     super(props)
 
     this.state={
-      themeType:'light'
+      themeType: localStorage.getItem('ACE_THEME') || 'light'
     }
   }
 
   handleThemeChange= (theme)=>{
+    localStorage.setItem('ACE_THEME', theme);
     this.setState({
       themeType: theme
     })
@@ -27,7 +29,9 @@ class App extends Component {
     });
     return (
       <MuiThemeProvider theme={theme}>
-        <Root onThemeChange={this.handleThemeChange} />
+        <CssBaseline>
+          <Root onThemeChange={this.handleThemeChange} />
+        </CssBaseline>
       </MuiThemeProvider>  
     );
   }

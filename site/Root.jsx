@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
@@ -12,29 +12,30 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 import SkipNextIcon from '@material-ui/icons/SkipNext'
 import VolumeMute from '@material-ui/icons/VolumeMute'
 import { withStyles } from '@material-ui/core/styles'
+import { Component } from '../libs'
 import { Slider } from '../src'
+import { Install, Usage, Props } from './docs'
 
 const styles= theme=>({
   container:{
     width:'100%',
-    height: '100%',
-    backgroundColor: theme.palette.grey[theme.palette.type==='light'? 200:800]
+    height: '100%'
   },
   button: {
     margin: theme.spacing.unit,
+  },
+  header:{
+    width:'100%',
+    height: '100%',
+    background: `url(${require('./assets/bg.jpg')}) no-repeat center center`,
+    backgroundSize: 'cover',
+    position: 'relative'
   },
   titleContainer:{  
     width:'100%',
     textAlign:'center',
     position:'absolute',
     top: '20%'
-  },
-  mainDesc:{
-    width:'100%',
-    height: '100%',
-    background: `url(${require('./assets/bg.jpg')}) no-repeat center center`,
-    backgroundSize: 'cover',
-    position: 'relative'
   },
   themePanel:{
     position:'absolute',
@@ -85,10 +86,19 @@ const styles= theme=>({
   gettingStarted:{
     width: 1120,
     padding: 20,
-    margin: '30px auto 100px'
+    margin: '24px auto 0',
+    color: theme.typography.caption.color
   },
-  gettingStartedBox:{
-    marginBottom: 20
+  footer:{
+    padding: 20,
+    color:theme.typography.caption.color,
+    textAlign:'center'
+  },
+  '@global footer a':{
+    margin: '0 8px',
+    fontSize:12,
+    lineHeight: 1.5,
+    color:theme.typography.caption.color,
   },
   '@media (max-width: 1120px)':{
     gettingStarted:{
@@ -113,7 +123,7 @@ const styles= theme=>({
   }
 })
 
-class App extends Component {
+class Root extends Component {
 
   constructor(props) {
     super(props)
@@ -148,7 +158,7 @@ class App extends Component {
 
     return (
       <div className={classes.container}>
-        <div className={classes.mainDesc}>  
+        <header className={classes.header}>  
           <div className={classes.themePanel}>
             <FormControlLabel
               control={
@@ -233,15 +243,20 @@ class App extends Component {
               </div>
             </Card>
           </div>
-        </div>   
+        </header>   
         <div id="getting_started" className={classes.gettingStarted}>
-          <div className={classes.gettingStartedBox}>
-            <Typography variant="headline">Installation</Typography>
-          </div>
+          <Install></Install>
+          <Usage></Usage>
+          <Hidden smDown >
+            <Props></Props>
+          </Hidden>
         </div>   
+        <footer className={classes.footer}>
+          <a href="http://blog.acehubert.com" target="_black">@aceHubert</a>
+        </footer>
       </div>
       )
     }
   }
 
-  export default withStyles(styles,{withTheme:true})(App);
+  export default withStyles(styles,{withTheme:true})(Root);

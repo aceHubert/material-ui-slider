@@ -51,7 +51,7 @@ const styles = theme =>({
     '&:before':{
       content:'""',        
       display: 'block',
-      border:`0 solid ${theme.palette.type==='light'?'rgba(0,0,0,.08)':'rgba(255,255,255,.1)'}`,
+      border:`0 solid ${theme.palette.action.hover}`,
       position:'absolute',     
       overflow: 'hidden',    
       borderRadius: 'inherit',
@@ -75,6 +75,7 @@ const styles = theme =>({
       width:48,
       height:48,  
       borderWidth:18,
+      borderColor: theme.palette.action.selected,
       left:-18,
       top:-18,
     }

@@ -21,13 +21,26 @@ module.exports = (config, env) => {
     {
       rule['include']= [ resolveApp('src'),resolveApp('site'),resolveApp('libs')]
     }else if(rule.hasOwnProperty('oneOf')){
-      rule.oneOf.forEach(one=>{
-        if(one.hasOwnProperty('include'))
+      rule.oneOf.forEach(oneOfRule=>{
+        if(oneOfRule.hasOwnProperty('include'))
         {
-          one['include']= [ resolveApp('src'),resolveApp('site'),resolveApp('libs')]
+          oneOfRule['include']= [ resolveApp('src'),resolveApp('site'),resolveApp('libs')]
+        }
+        if(oneOfRule.loader && oneOfRule.loader.includes('file-loader')){
+          oneOfRule.exclude.push(/\.md$/)
+        }
+      })
+      //添加md文件读取
+      rule.oneOf.push({
+        test: /\.md$/,
+        loader : require.resolve('raw-loader'),
+        include:  [ resolveApp('src'),resolveApp('site'),resolveApp('libs')],
+        options: {
+          name: 'static/media/[name].[hash:8].[ext]'
         }
       })
     }
   }) 
+
   return config;
 }
