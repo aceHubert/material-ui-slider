@@ -1,39 +1,28 @@
-/* @flow */
-
-import React, { Component } from 'react';
-import type { Node } from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const ANIMATION_DURATION = 300;
 
-type Props = {
-  isShow: boolean,
-  children: Node
-};
+class CollapseTransition extends React.Component {
 
-export default class CollapseTransition extends Component<Props> {
-
-  selfRef: ?HTMLDivElement;
-  leaveTimer: any;
-  enterTimer: any;
-
-  componentDidMount(): void {
+  componentDidMount() {
     this.beforeEnter();
     if (this.props.isShow) {
       this.enter();
     }
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     this.beforeLeave();
     this.leave();
   }
 
-  componentWillReceiveProps(nextProps: any): void{
+  componentWillReceiveProps(nextProps){
     if (this.props.isShow !== nextProps.isShow) 
       this.triggerChange(nextProps.isShow);
   }
 
-  triggerChange(isShow: boolean): void {
+  triggerChange(isShow) {
     clearTimeout(this.enterTimer);
     clearTimeout(this.leaveTimer);
     if (isShow) {
@@ -45,7 +34,7 @@ export default class CollapseTransition extends Component<Props> {
     }
   }
 
-  beforeEnter(): void {
+  beforeEnter() {
     const el = this.selfRef;
     //prepare
     if(el != null)
@@ -59,7 +48,7 @@ export default class CollapseTransition extends Component<Props> {
     }
   }
 
-  enter(): void {
+  enter() {
     const el = this.selfRef;
     //start
     if(el != null)
@@ -81,7 +70,7 @@ export default class CollapseTransition extends Component<Props> {
     }
   }
 
-  afterEnter(): void {
+  afterEnter() {
     const el = this.selfRef;
     if(el != null)
     {
@@ -91,7 +80,7 @@ export default class CollapseTransition extends Component<Props> {
     }
   }
 
-  beforeLeave(): void {
+  beforeLeave() {
     const el = this.selfRef;
     if(el != null)
     {
@@ -107,7 +96,7 @@ export default class CollapseTransition extends Component<Props> {
     }
   }
 
-  leave(): void {
+  leave() {
     const el = this.selfRef;
     if(el != null)
     {
@@ -120,7 +109,7 @@ export default class CollapseTransition extends Component<Props> {
     }
   }
 
-  afterLeave(): void {
+  afterLeave() {
     const el = this.selfRef;
     if (!el) return ;
 
@@ -131,15 +120,21 @@ export default class CollapseTransition extends Component<Props> {
     el.style.paddingBottom = el.dataset.oldPaddingBottom;
   }
 
-  render(): Node {
+  render() {
     return (
       <div
         className="collapse-transition"
         style={{ overflow: 'hidden' }}
-        ref={(div: ?HTMLDivElement) => this.selfRef = div}
+        ref={div => this.selfRef = div}
       >
         {this.props.children}
       </div>
     );
   }
 }
+
+CollapseTransition.propTypes={
+  isShow: PropTypes.bool
+}
+
+export default  CollapseTransition;

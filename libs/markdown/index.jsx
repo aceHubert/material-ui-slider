@@ -1,7 +1,4 @@
-/* @flow */
-
-import React, { Component } from 'react';
-import type { Node } from 'react'
+import React from 'react';
 import ReactDOM from 'react-dom';
 import marked from 'marked';
 import prism from 'prismjs';
@@ -10,32 +7,28 @@ import Canvas from './canvas';
 import './prism.css';
 import './style.css';
 
-export default class Markdown extends Component<{}> {
+class Markdown extends React.Component {
 
-  components: any;
-  renderer: any;
-  document: any;
-
-  constructor(props: any) {
+  constructor(props) {
     super(props);
 
     this.components = new Map();
 
     this.renderer = new marked.Renderer();
-    this.renderer.table = (header: any, body: any) => {
+    this.renderer.table = (header, body) => {
       return `<table class="grid"><thead>${header}</thead><tbody>${body}</tbody></table>`;
     };
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.renderDOM();
   }
 
-  componentDidUpdate(): void {
+  componentDidUpdate() {
     this.renderDOM();
   }
 
-  renderDOM(): void {
+  renderDOM() {
     for (const [id, component] of this.components) {
       const div = document.getElementById(id);    
       if (div instanceof HTMLElement) {     
@@ -45,13 +38,13 @@ export default class Markdown extends Component<{}> {
     prism.highlightAll();
   }
 
-  render(): Node {
+  render() {
     const document = this.document && this.document(localStorage.getItem('ACE_LANGUAGE') || 'zh-CN');
     const {classes, theme, ...otherProps} = this.props;
     if (typeof document === 'string') {
       this.components.clear();
       const theme = this.getTheme && this.getTheme();
-      const html = marked(document.replace(/:::\s?demo\s?([^]+?):::/g, (match: any, p1: any, offset: number) => {
+      const html = marked(document.replace(/:::\s?demo\s?([^]+?):::/g, (match, p1, offset) => {
         const id = offset.toString(36);       
         this.components.set(id, React.createElement(Canvas, Object.assign({
           name: this.constructor.name.toLowerCase(),
@@ -71,3 +64,5 @@ export default class Markdown extends Component<{}> {
     }
   }
 }
+
+export default Markdown;

@@ -1,24 +1,25 @@
-/* @flow */
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-type Props = {
-  className?: string,
-  style?: Object
-};
+class Component extends React.Component {
 
-export default class Component extends React.Component<Props> {
-
-  classNames(...args: any): string {
+  classNames(...args) {
     return classnames(args);
   }
 
-  className(...args: any): string {
+  className(...args) {
     return this.classNames.apply(this, args.concat([this.props.className]));
   }
 
-  style(args: any): Object {
+  style(args) {
     return Object.assign({}, args, this.props.style)
   }
 }
+
+Component.propTypes={
+  className: PropTypes.string,
+  style: PropTypes.object
+}
+
+export default  Component;

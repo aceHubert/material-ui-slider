@@ -1,38 +1,17 @@
-/* @flow */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import marked from 'marked';
+import { transform } from 'babel-standalone'  ; 
+import Editor from '../editor';
 
-import React, { Component } from 'react'
-import type { Element, Node } from 'react'
-import ReactDOM from 'react-dom'
-import marked from 'marked'
-import { transform } from 'babel-standalone'
-   
-import Editor from '../editor'
+class Canvas extends React.Component {
 
-
-type Props ={
-  locale: Object,
-  name: string,
-  theme: string,
-  children: string
-};
-
-type State ={
-  showBlock: boolean
-};
-
-export default class Canvas extends Component<Props,State> {
-
-  static defaultProps={
-    locale:{},
-    theme:'light'
-  }
-
-  playerId: any = `${parseInt(Math.random() * 1e9,10).toString(36)}`;
-  description: string;
-  extras: any = {};
-  source: string;
-
-  constructor(props: Props) {
+  playerId= `${parseInt(Math.random() * 1e9,10).toString(36)}`;
+  description;
+  extras={};
+  source=[];
+  constructor(props) {
     super(props)
 
     this.state= {
@@ -47,27 +26,30 @@ export default class Canvas extends Component<Props,State> {
         this.description = marked(matchs[1])
       else{
         this.description = marked(descs[1])
-        descs[2].split(/\r\n/).forEach((desc: string)=>{
+        descs[2].split(/\r\n/).forEach((desc)=>{
         const value = desc.split(/\s+/)
           this.extras[value[0]]= value[1]
         })
       }
     }
-    matchs && matchs[2] &&(this.source = matchs[2].match(/```(.*)[\n|\r\n]([^]+)[\r\n|\n]```/))   
+    if(matchs && matchs[2])
+    {
+     this.source = matchs[2].match(/```(.*)[\n|\r\n]([^]+)[\r\n|\n]```/)
+    }
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.renderSource(this.source[2])
   }
 
-  blockControl(): void {
+  blockControl() {
     this.setState({
       showBlock: !this.state.showBlock
     })
   }
 
-  renderSource(value: any): void {
-    import('../../src').then((Element: Element<any>) => {
+  renderSource(value) {
+    import('../../src').then((Element) => {
       const args = ['context', 'React', 'ReactDOM']
       const argv = [this, React, ReactDOM]
 
@@ -80,7 +62,7 @@ export default class Canvas extends Component<Props,State> {
         args,
         argv
       }
-    }).then(({ args, argv }: { args: any,argv: Array<any>}) => {
+    }).then(({args, argv}) => {
       const code = transform(`
         class Demo extends React.Component {
           ${value}
@@ -97,14 +79,14 @@ export default class Canvas extends Component<Props,State> {
       new Fn(...args).apply(this, argv)
 
       this.source[2] = value
-    }).catch((err: any) => {
+    }).catch((err) => {
       if (process.env.NODE_ENV !== 'production') {
-        throw err;
+        throw err
       }
     })
   }
 
-  render(): Node {
+  render() {
     return (
       <div className={`demo-block demo-box demo-${this.props.name}`}>       
         <div className="demo-block-control">
@@ -138,7 +120,7 @@ export default class Canvas extends Component<Props,State> {
                 value={this.source[2]}
                 theme={this.props.theme}
                 lineNumbers={true}
-                onChange={(code: any) => this.renderSource(code)}
+                onChange={(code) => this.renderSource(code)}
               />
             </div>
           )
@@ -148,3 +130,12 @@ export default class Canvas extends Component<Props,State> {
     )
   }
 }
+
+
+Canvas.propTypes={
+  name: PropTypes.string.isRequired,
+  theme: PropTypes.string,
+  children: PropTypes.string.isRequired
+}
+
+export default Canvas;

@@ -1,39 +1,17 @@
-/* @flow */
-
-import React, { Component } from 'react'
-import type { Node } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types';
 import CodeMirror from 'codemirror'
 
-import 'codemirror/mode/jsx/jsx'
-import 'codemirror/keymap/sublime'
-import 'codemirror/addon/comment/comment'
-import 'codemirror/lib/codemirror.css'
-import './light.css'
-import './dark.css'
+import 'codemirror/mode/jsx/jsx';
+import 'codemirror/keymap/sublime';
+import 'codemirror/addon/comment/comment';
+import 'codemirror/lib/codemirror.css';
+import './light.css';
+import './dark.css';
 
-type Props = {  
-  theme: string,
-  mode: string,
-  lineNumbers: boolean,
-  dragDrop: boolean,
-  value: string,
-  onChange: Function
-};
+class Editor extends React.Component {
 
-export default class Editor extends Component<Props> {
-
-  editor: ?HTMLDivElement;
-  cm: any;
-  timeout: any;
-
-  static defaultProps={
-    mode: 'jsx',
-    theme: 'light',
-    lineNumbers: false,
-    dragDrop:false
-  }
-
-  componentDidMount(): void {
+  componentDidMount() {
     const { onChange, value, mode, theme, lineNumbers, dragDrop } = this.props
 
     this.cm = CodeMirror(this.editor, {
@@ -47,7 +25,7 @@ export default class Editor extends Component<Props> {
 
     this.cm.setValue(value)
 
-    this.cm.on('changes', (cm: any) => {
+    this.cm.on('changes', (cm) => {
       if (onChange) {
         clearTimeout(this.timeout);
 
@@ -58,7 +36,7 @@ export default class Editor extends Component<Props> {
     })
   }
 
-  componentWillReceiveProps(nextProps: Props){
+  componentWillReceiveProps(nextProps){
     for (const key in nextProps) {
       if (nextProps.hasOwnProperty(key)) {
         const prop = nextProps[key];
@@ -70,9 +48,26 @@ export default class Editor extends Component<Props> {
     }
   }
 
-  render(): Node {
-    return <div className="editor" ref={(div: ?HTMLDivElement) => (this.editor = div)} />
+  render() {
+    return <div className="editor" ref={(div) => (this.editor = div)} />
   }
 }
 
 
+Editor.propTypes={
+  theme: PropTypes.string,
+  mode: PropTypes.string,
+  lineNumbers: PropTypes.bool,
+  dragDrop: PropTypes.bool,
+  value: PropTypes.string,
+  onChange: PropTypes.func
+}
+
+Editor.defaultProps={
+  mode: 'jsx',
+  theme: 'light',
+  lineNumbers: false,
+  dragDrop:false
+}
+
+export default  Editor;
