@@ -19,7 +19,6 @@ Here's a quick example to get you started:
 ```
 
 ### basic
-
 ::: demo 
 ``` javascript
   render() {
@@ -31,7 +30,6 @@ Here's a quick example to get you started:
 :::
 
 ### defaultValue
-
 "defaultValue" must be between min and max
 
 ::: demo use prop `defaultValue` to set default value.
@@ -40,6 +38,36 @@ Here's a quick example to get you started:
   render() {
     return <div style={{width:768,maxWidth:'100%'}}>
       <Slider defaultValue={50}/>   
+    </div>
+  }
+```
+:::
+
+### value
+change slider bar's value
+
+::: demo use prop `value` to change value.
+
+``` javascript
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: 50
+    };
+  }
+
+  handleChangeComplete(val){
+    this.setState({
+      value: val
+    })
+  }
+
+  render() {
+    return <div style={{width:768,maxWidth:'100%'}}>
+      <Slider onChangeComplete={this.handleChangeComplete.bind(this)}/>   
+      <Slider color="#bf4040" value={this.state.value}/>     
+      <Slider color="#39ADBD" range value={[this.state.value,80]}/>         
     </div>
   }
 ```

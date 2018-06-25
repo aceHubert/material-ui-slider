@@ -102,30 +102,17 @@ class Slider extends Component{
     onChangeComplete:()=>{}
   }
 
+  min;
+  max;
   activePointer = 'left';
   constructor(props){
     super(props)
-   
-    const {range, defaultValue, min, max} = props;
-    let value =[min,max];
-    if(range)
-    {
-      if(_.isArray(defaultValue)){
-        const value1 = defaultValue[0]||min;
-        const value2 = defaultValue[1]||max;
-        const valueMin = Math.min(value1,value2);
-        const valueMax = Math.max(value1,value2);
-        value[0] = this.calcValue(valueMin >= min && valueMin <= max ? valueMin : min);
-        value[1] = this.calcValue(valueMax >= min && valueMax <= max ? valueMax : max);
-      }else if(_.isNumber(defaultValue))
-      {
-        value[0] = this.calcValue(defaultValue);
-      }
-    }else{
-      value = this.calcValue(_.isNumber(defaultValue) && defaultValue >= min && defaultValue <= max ? defaultValue : min);
-    }
+    const {min, max, defaultValue, value} = props;
+    this.min = Math.min(min,max);
+    this.max = Math.max(min, max);
+  
     this.state={
-      value,
+      value: this.calcDefaultValue(value||defaultValue),
       hover: false,
       pressed: false     
     }
@@ -139,8 +126,45 @@ class Slider extends Component{
     this.unbindEventListeners()
   }
 
-  calcValue = (value)=>{
-    const {min, max, scaleLength} = this.props;    
+  componentWillReceiveProps(nextProps){    
+    if(!_.isUndefined(nextProps.value) && !_.isEqual(nextProps.value,this.props.value)){
+      this.setState({
+        value: this.calcDefaultValue(nextProps.value)
+      })
+    }
+  }
+
+  calcDefaultValue = (defaultValue)=>{
+    const {range} = this.props;
+    const {min, max} = this;   
+    if(range)
+    {
+      let value =!!this.state ? this.state.value : [min, max];
+      if(_.isArray(defaultValue)){
+        const value1 = _.isNumber(defaultValue[0])? defaultValue[0] : min;
+        const value2 = _.isNumber(defaultValue[1])? defaultValue[1] : max;
+        const valueMin = Math.min(value1,value2);
+        const valueMax = Math.max(value1,value2);
+        value[0] = this.calcScaleValue(valueMin >= min && valueMin <= max ? valueMin : min);
+        value[1] = this.calcScaleValue(valueMax >= min && valueMax <= max ? valueMax : max);
+      }else if(_.isNumber(defaultValue))
+      {
+        const valueMin = this.calcScaleValue(defaultValue);
+        if(valueMin <= value[1])
+          value[0] = valueMin
+        else 
+          value[1] = valueMin
+          console.log(valueMin, value)
+      }
+      return value;
+    }else{
+      return this.calcScaleValue(_.isNumber(defaultValue) && defaultValue >= min && defaultValue <= max ? defaultValue : min);
+    }
+  }
+
+  calcScaleValue = (value)=>{
+    const {scaleLength} = this.props; 
+    const {min, max} = this;   
     if(scaleLength> 0){
       value -= min;
       let halfScaleLength = scaleLength/2;
@@ -165,12 +189,13 @@ class Slider extends Component{
   }
   
   handleChange = (e, skip)=>{
-    const {range, min, max, disabled} = this.props;
+    const {range, disabled} = this.props;
+    const {min, max} = this;
     if(disabled) return;
 
     const offset = calculateChange(e,skip,this.props,this.container);
     const oldValue = this.state.value;
-    const newValue = this.calcValue(Math.round(offset/100*((max-min)))+min);    
+    const newValue = this.calcScaleValue(Math.round(offset/100*((max-min)))+min);    
     if(range){
       if((this.activePointer==='left' && oldValue[0] !== newValue && newValue < oldValue[1]) || newValue <= oldValue[0] ){
         this.activePointer==='right'&&(this.activePointer='left');
@@ -237,8 +262,9 @@ class Slider extends Component{
   }
 
   render(){
-    const {classes, theme, min, max, range, scaleLength, direction, color, disabled} = this.props;
+    const {classes, theme, range, scaleLength, direction, color, disabled} = this.props;
     const {value, hover, pressed}=this.state;
+    const {min, max} = this;
     const trackColor = disabled ?  theme.palette.grey[700] : (color || theme.palette.primary[theme.palette.type]);
     const vertical = direction==='vertical';
     let rootStyle=Object.assign({
@@ -367,7 +393,6 @@ class Slider extends Component{
       </div>)
     }else{
       let offset = Math.round((value-min)/(max-min)*100);
-
       const trackActiveStyle=Object.assign({      
         backgroundColor: trackColor       
       },vertical?{
@@ -482,6 +507,7 @@ Slider.propTypes={
   min: PropTypes.number,
   max: PropTypes.number,
   defaultValue: PropTypes.oneOfType([PropTypes.number,PropTypes.arrayOf(PropTypes.number)]),
+  value: PropTypes.oneOfType([PropTypes.number,PropTypes.arrayOf(PropTypes.number)]),
   range: PropTypes.bool,
   scaleLength: PropTypes.number,
   direction : PropTypes.oneOf(['horizontal','vertical']),
