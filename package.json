@@ -1,6 +1,6 @@
 {
   "name": "material-ui-slider",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "slider fro Material-UI 1.0.0",
   "private": false,
   "author": "Hubert<yi.xiang@live.cn>",
@@ -29,7 +29,8 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash": "^4.17.10",
-    "prop-types": "^15.6.1"
+    "prop-types": "^15.6.1",
+    "raf": "^3.4.0"
   },
   "devDependencies": {
     "@material-ui/core": "^1.0.0",
