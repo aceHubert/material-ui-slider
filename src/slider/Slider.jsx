@@ -127,6 +127,9 @@ class Slider extends Component{
   }
 
   componentWillReceiveProps(nextProps){    
+    const {min, max} = nextProps;
+    this.min = Math.min(min, max);
+    this.max = Math.max(min, max);    
     if(!_.isUndefined(nextProps.value) && !_.isEqual(nextProps.value,this.props.value)){
       this.setState({
         value: this.calcDefaultValue(nextProps.value)
