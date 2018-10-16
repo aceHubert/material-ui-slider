@@ -1,6 +1,6 @@
 {
   "name": "material-ui-slider",
-  "version": "0.1.0",
+  "version": "0.1.10",
   "description": "slider fro Material-UI 1.0.0",
   "private": false,
   "author": "Hubert<yi.xiang@live.cn>",
@@ -33,21 +33,31 @@
     "raf": "^3.4.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/standalone": "^7.0.0",
     "@material-ui/core": "^1.0.0",
     "@material-ui/icons": "^1.0.0",
-    "babel-standalone": "^6.26.0",
     "codemirror": "5.38.0",
     "marked": "^0.4.0",
     "prismjs": "^1.14.0",
     "raw-loader": "^0.5.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4",
-    "react-scripts-configs": "0.0.10"
+    "react-scripts": "^2.0.5",
+    "react-scripts-configs": "^0.0.12"
   },
   "peerDependencies": {
     "@material-ui/core": "^1.0.0",
     "react": "*",
     "react-dom": "*"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

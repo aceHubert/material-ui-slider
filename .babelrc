@@ -1,15 +1,30 @@
 {
   "env": {
     "development": {
-      "presets" : ["react-app"],
-      "plugins" : [["transform-runtime", { "polyfill": false }]]
+      "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+      ],
+      "plugins": [
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-syntax-dynamic-import"
+      ]
     },
     "test": {
-      "presets" : ["react-app"]
+      "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+      ]
     },
     "production": {
-      "presets" : ["react-app"],
-      "plugins" : [["transform-runtime", { "polyfill": false }]]
+      "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+      ],
+      "plugins": [
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-syntax-dynamic-import"
+      ]
     }
   }
 }
