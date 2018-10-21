@@ -38,8 +38,8 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/standalone": "^7.0.0",
-    "@material-ui/core": "^1.0.0",
-    "@material-ui/icons": "^1.0.0",
+    "@material-ui/core": "^3.0.0",
+    "@material-ui/icons": "^3.0.0",
     "codemirror": "5.38.0",
     "marked": "^0.4.0",
     "prismjs": "^1.14.0",
@@ -50,7 +50,7 @@
     "react-scripts-configs": "^0.0.12"
   },
   "peerDependencies": {
-    "@material-ui/core": "^1.0.0",
+    "@material-ui/core": "^3.0.0",
     "react": "*",
     "react-dom": "*"
   },
