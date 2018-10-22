@@ -3,6 +3,7 @@ builds
 test
 site
 public
+node_modules
 !dist
 !next.es6.js
 .*

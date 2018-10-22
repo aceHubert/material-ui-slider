@@ -45,7 +45,10 @@ Here's a quick example to get you started:
 
 ## Update 
 
-> 0.1.0
+> v0.1.10
+* Allow dynamic update to min/max value
+
+> v0.1.0
 * Added prop "value".
 
 
