@@ -1,6 +1,6 @@
 {
   "name": "material-ui-slider",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "description": "slider fro Material-UI 1.0.0",
   "private": true,
   "author": "Hubert<yi.xiang@live.cn>",
@@ -20,9 +20,9 @@
     "build": "react-scripts-configs build",
     "test": "react-scripts-configs test --env=jsdom",
     "eject": "react-scripts eject",
-    "lint": "eslint src site --quiet",
+    "lint": "eslint src docs --quiet",
     "prepubl¡sh": "yarn version && ./builds/scripts/prepare.sh",
-    "release": "npm public dist/npm  && ./builds/scripts/release.sh"
+    "release": "cd dist/npm && yarn publish && ../../builds/scripts/release.sh"
   },
   "dependencies": {
     "classnames": "^2.2.5",
