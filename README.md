@@ -45,7 +45,11 @@ Here's a quick example to get you started:
 
 ## Update 
 
-> v0.1.10
+> v3.0.0
+* Upgrade peerDependencies "@material-ui/core" to be "^3.0.0"
+* Remove some unnessesary files from package
+
+> v0.1.11
 * Allow dynamic update to min/max value
 
 > v0.1.0

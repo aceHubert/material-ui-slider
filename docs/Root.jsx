@@ -12,9 +12,9 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 import SkipNextIcon from '@material-ui/icons/SkipNext'
 import VolumeMute from '@material-ui/icons/VolumeMute'
 import { withStyles } from '@material-ui/core/styles'
+import { Slider } from 'material-ui-slider'
 import { Component } from '../libs'
-import { Slider } from '../src'
-import { Install, Usage, Props } from './docs'
+import { Install, Usage, Props } from './steps'
 
 const styles= theme=>({
   container:{

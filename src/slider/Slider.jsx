@@ -157,7 +157,6 @@ class Slider extends Component{
           value[0] = valueMin
         else 
           value[1] = valueMin
-          console.log(valueMin, value)
       }
       return value;
     }else{

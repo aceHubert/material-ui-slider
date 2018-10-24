@@ -1,0 +1,28 @@
+{
+  "name": "material-ui-slider",
+  "version": "0.0.0",
+  "description": "slider fro Material-UI 1.0.0",
+  "license": "MIT",
+  "main": "es5/index.js",
+  "keywords": [
+    "material-ui",
+    "slider",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aceHubert/material-ui-slider.git"
+  },
+  "homepage": "https://acehubert.github.io/material-ui-slider/",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}

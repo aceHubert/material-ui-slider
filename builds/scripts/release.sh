@@ -1,28 +1,46 @@
 #!/bin/bash
 
-# set ORIGIN to current git origin
-ORIGIN=$(git remote -v | awk '$1=="origin" && $3=="(push)" {print $2}');
-VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g');
+# testing before publish
+#npm run lint && npm run build #&& npm run test
 
-# target folder: /dist/site, make it clean and step into
-rm -fr dist
-mkdir dist dist/gh-pages
-cd dist/gh-pages
+if [ $? = 0 ]; then
+  # purge dist
+  rm -fr dist
 
-# init an empty git repo, checkout branch gh-pages
-git init
-git remote add origin $ORIGIN
-git fetch
-git checkout -t origin/gh-pages
+  export NODE_ENV=production
+  export BABEL_ENV=production
 
-# run the site build script
-rm -r *
-yarn run build
+  # babel transform es6 into es5
+  babel src --out-dir dist/npm/es5/src 
+  babel libs --out-dir dist/npm/es5/libs 
+  babel builds/npm/index.js --out-file dist/npm/es5/index.js 
 
-# copy site to gh-pages folder
-cp -r ../site/* .
+  # keep es6 for next.js
+  # babel src --out-dir dist/npm/es6/src --copy-files
+  # babel libs --out-dir dist/npm/es6/libs --copy-files
+  # cp builds/npm/next.js dist/npm/next.es6.js
 
-# commit and push to gh-pages
- git add . -A
- git commit -m "$VERSION"
- git push
+  # copy package.json
+  TMP=$(mktemp)
+  PACKAGE_VERSION=$(cat package.json | jq '.version' | sed 's/[",]//g')
+  PACKAGE_DEPENDENCIES=$(cat package.json | jq -c '.dependencies')
+  cat builds/npm/package.json | 
+    jq 'to_entries | 
+        map(if .key == "version"
+            then . + {"value": '\""$PACKAGE_VERSION"\"'}
+            elif .key == "dependencies"
+            then . + {"value": '"$PACKAGE_DEPENDENCIES"'}
+            else .
+            end
+        ) |
+        from_entries' > "$TMP" && mv -f "$TMP" dist/npm/package.json
+
+  # copy README.md
+  cp README.md dist/npm/README.md    
+
+  # publish
+  yarn publish dist/npm --new-version "$PACKAGE_VERSION"
+
+else
+  echo 'Code cant be verify, plz check ~'
+fi
