@@ -1,7 +1,4 @@
 # Slider for Material-UI 1.0.0
-This is an alternative package fork from [material-ui-slider](https://www.npmjs.com/package/material-ui-slider)
-We add 3 more props, and make a PR to the master branch.
-This package is for temporary use within our own development
 
 ## Installation
 
