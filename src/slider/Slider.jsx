@@ -99,7 +99,10 @@ class Slider extends Component{
     scale:0,
     direction:'horizontal',
     onChange:()=>{},
-    onChangeComplete:()=>{}
+    onChangeComplete:()=>{},
+    leftLock: false,
+    rightLock: false,
+    leftMin: null
   }
 
   min;
@@ -191,24 +194,29 @@ class Slider extends Component{
   }
   
   handleChange = (e, skip)=>{
-    const {range, disabled} = this.props;
+    const {range, disabled, leftLock, rightLock, leftMin} = this.props;
     const {min, max} = this;
     if(disabled) return;
 
     const offset = calculateChange(e,skip,this.props,this.container);
     const oldValue = this.state.value;
-    const newValue = this.calcScaleValue(Math.round(offset/100*((max-min)))+min);    
+    const newValueCal = this.calcScaleValue(Math.round(offset/100*((max-min)))+min);
+    const newValue = (leftMin && newValueCal < leftMin) ? leftMin : newValueCal;
     if(range){
       if((this.activePointer==='left' && oldValue[0] !== newValue && newValue < oldValue[1]) || newValue <= oldValue[0] ){
         this.activePointer==='right'&&(this.activePointer='left');
-        this.setState({
-          value:[newValue,oldValue[1]]
-        },()=>{this.triggerChange(e)})
+        if (!leftLock) {
+          this.setState({
+            value:[newValue,oldValue[1]]
+          },()=>{this.triggerChange(e)})
+        }
       }else if((this.activePointer==='right' && oldValue[1] !== newValue && newValue > oldValue[0])|| newValue >= oldValue[1]) {
         this.activePointer==='left'&&(this.activePointer='right');
-        this.setState({
-          value:[oldValue[0],newValue]
-        },()=>{this.triggerChange(e)})
+        if (!rightLock) {
+          this.setState({
+            value:[oldValue[0],newValue]
+          },()=>{this.triggerChange(e)})
+        }
       }
     }else{         
       if(oldValue !== newValue)
@@ -516,7 +524,10 @@ Slider.propTypes={
   color: PropTypes.string,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
-  onChangeComplete: PropTypes.func
+  onChangeComplete: PropTypes.func,
+  leftLock: PropTypes.bool,
+  rightLock: PropTypes.bool,
+  leftMin: PropTypes.number
 }
 
 export default withStyles(styles,{withTheme:true})(Slider)
