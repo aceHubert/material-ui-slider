@@ -42,6 +42,9 @@ Here's a quick example to get you started:
  disabled | bool | false |
  onChange | func |  | Callback fired when the value is changed.<br>__Signature:__ <br> function(value: number/array[number,number]) => void
  onChangeComplete | func |  | Callback fired when the value is changed completely.<br>__Signature:__ <br> function(value: number/array[number,number]) => void
+ leftMin | number | 0 | min value for range selection
+ leftLock | bool | false | allow/not allow scroll left for range
+ rightLock | bool | false | allow/not allow scroll right for range
 
 ## Update 
 
