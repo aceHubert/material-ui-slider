@@ -102,7 +102,7 @@ class Slider extends Component{
     onChangeComplete:()=>{},
     leftLock: false,
     rightLock: false,
-    leftMin: null
+    leftMin: 0
   }
 
   min;
