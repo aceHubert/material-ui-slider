@@ -2,8 +2,7 @@
   "env": {
     "development": {
       "presets": [
-        "@babel/preset-env",
-        "@babel/preset-react"
+        "react-app"
       ],
       "plugins": [
         [
@@ -27,8 +26,7 @@
     },
     "production": {
       "presets": [
-        "@babel/preset-env",
-        "@babel/preset-react"
+        "react-app"
       ],
       "plugins": [
         "lodash", [
