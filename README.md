@@ -45,6 +45,9 @@ Here's a quick example to get you started:
 
 ## Update 
 
+> v3.0.3
+* fixed [#11](https://github.com/aceHubert/material-ui-slider/issues/11) bug
+
 > v3.0.0
 * Upgrade peerDependencies "@material-ui/core" to be "^3.0.0"
 * Remove some unnessesary files from package
