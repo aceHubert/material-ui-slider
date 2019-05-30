@@ -1,7 +1,7 @@
 {
   "name": "material-ui-slider",
-  "version": "3.0.0",
-  "description": "slider fro Material-UI 1.0.0",
+  "version": "3.0.2",
+  "description": "Slider for Material-UI 1.0.0",
   "private": true,
   "author": "Hubert<yi.xiang@live.cn>",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "release": "yarn version && ./builds/scripts/release.sh",
     "deploy": "./builds/scripts/deploy.sh"
   },
-  "dependencies": {    
+  "dependencies": {
     "classnames": "^2.2.5",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
