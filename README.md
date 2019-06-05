@@ -27,7 +27,7 @@ Here's a quick example to get you started:
   ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-## Prpos
+## Props
 
  name | type | default | description
  ---- | ---- | ------- | -----------
