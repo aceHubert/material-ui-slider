@@ -7,6 +7,7 @@
  max | number | 100 | max value in process bar.
  defaultValue | number/array[number,number] | 0/[0,100] | default value, value must be between min and max.
  value | number/array[number,number] | / | value in process bar.
+ decimals | number | 0 | value of decimal places
  range | bool | false |  range choose, "defaultValue" must be an array
  scaleLength | number | 0 | scale choose, value "0" means "no scale", "defaultValue" must be a multiple of "scaleLength".
 direction | horizontal/vertical | horizontal | 
