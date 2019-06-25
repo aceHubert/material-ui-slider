@@ -35,6 +35,7 @@ Here's a quick example to get you started:
  max | number | 100 | max value in process bar.
  defaultValue | number/array[number,number] | 0/[0,100] | default value, value must be between min and max.
  value | number/array[number,number] | / | value in process bar.
+ decimals | number | 0 | number of decimal places for value.
  range | bool | false |  range choose, "defaultValue" must be an array
  scaleLength | number | 0 | scale choose, value "0" means "no scale", "defaultValue" must be a multiple of "scaleLength".
  direction | horizontal/vertical | horizontal | 
@@ -44,6 +45,9 @@ Here's a quick example to get you started:
  onChangeComplete | func |  | Callback fired when the value is changed completely.<br>__Signature:__ <br> function(value: number/array[number,number]) => void
 
 ## Update 
+
+> v3.0.4
+* Added prop "decimals".
 
 > v3.0.3
 * fixed [#11](https://github.com/aceHubert/material-ui-slider/issues/11) bug
