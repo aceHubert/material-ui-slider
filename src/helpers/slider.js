@@ -2,14 +2,26 @@ export const calculateChange = (e, skip, props, container) => {
   e.preventDefault()
   const containerWidth = container.clientWidth
   const containerHeight = container.clientHeight
-  const x = typeof e.pageX === 'number'
+  let x = typeof e.pageX === 'number'
     ? e.pageX
     : e.touches[0].pageX
-  const y = typeof e.pageY === 'number'
+  let y = typeof e.pageY === 'number'
     ? e.pageY
     : e.touches[0].pageY
-  const left = x - (container.getBoundingClientRect().left + window.pageXOffset)
-  const top = y - (container.getBoundingClientRect().top + window.pageYOffset)
+
+  let currentX = container.getBoundingClientRect().left + window.pageXOffset
+  let currentY = container.getBoundingClientRect().top + window.pageYOffset
+
+  //logarithmic scale
+  if (props.logarithmicScale) {
+    x = Math.log(x) / Math.log(10)
+    x = Math.log(y) / Math.log(10)
+    currentX = Math.log(currentX) / Math.log(10)
+    currentY = Math.log(currentY) / Math.log(10)
+  }
+
+  const left = x - currentX
+  const top = y - currentY
 
   if (props.direction === 'vertical') {
     let offset;

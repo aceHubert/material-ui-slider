@@ -100,6 +100,7 @@ class Slider extends Component{
     defaultValue:0,
     range:false,
     scale:0,
+    logarithmicScale: false,
     direction:'horizontal',
     onChange:()=>{},
     onChangeComplete:()=>{}
