@@ -30,7 +30,7 @@ export const calculateChange = (e, skip, props, container) => {
     } else if (top > containerHeight) {
       offset = 0
     } else {
-      offset = Math.round(100 - (top * 100) / containerHeight)
+      offset = 100 - (top * 100) / containerHeight
     }
     return offset;
   }else{
@@ -40,7 +40,7 @@ export const calculateChange = (e, skip, props, container) => {
     } else if (left > containerWidth) {
       offset = 100
     } else {
-      offset = Math.round((left * 100) / containerWidth)
+      offset = (left * 100) / containerWidth
     }
     return offset;
   }

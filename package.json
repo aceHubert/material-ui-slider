@@ -1,7 +1,7 @@
 {
   "name": "material-ui-slider",
-  "version": "3.0.0",
-  "description": "slider fro Material-UI 1.0.0",
+  "version": "3.0.4",
+  "description": "Slider For Material-UI 1.0.0",
   "private": true,
   "author": "Hubert<yi.xiang@live.cn>",
   "license": "MIT",
