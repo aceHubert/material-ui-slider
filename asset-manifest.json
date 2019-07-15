@@ -1,7 +1,7 @@
 {
   "main.css": "/material-ui-slider/static/css/main.645523c7.chunk.css",
-  "main.js": "/material-ui-slider/static/js/main.ec5a2944.chunk.js",
-  "main.js.map": "/material-ui-slider/static/js/main.ec5a2944.chunk.js.map",
+  "main.js": "/material-ui-slider/static/js/main.50e2f40a.chunk.js",
+  "main.js.map": "/material-ui-slider/static/js/main.50e2f40a.chunk.js.map",
   "static/css/1.aa5b7c5c.chunk.css": "/material-ui-slider/static/css/1.aa5b7c5c.chunk.css",
   "static/js/1.6135900a.chunk.js": "/material-ui-slider/static/js/1.6135900a.chunk.js",
   "static/js/1.6135900a.chunk.js.map": "/material-ui-slider/static/js/1.6135900a.chunk.js.map",
@@ -11,6 +11,6 @@
   "static/css/main.645523c7.chunk.css.map": "/material-ui-slider/static/css/main.645523c7.chunk.css.map",
   "static/css/1.aa5b7c5c.chunk.css.map": "/material-ui-slider/static/css/1.aa5b7c5c.chunk.css.map",
   "index.html": "/material-ui-slider/index.html",
-  "precache-manifest.0b975ea2bb13ee3f097426d81c58a29a.js": "/material-ui-slider/precache-manifest.0b975ea2bb13ee3f097426d81c58a29a.js",
+  "precache-manifest.a3c3cf688063ba0d3fee176178a25df8.js": "/material-ui-slider/precache-manifest.a3c3cf688063ba0d3fee176178a25df8.js",
   "service-worker.js": "/material-ui-slider/service-worker.js"
 }
