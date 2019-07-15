@@ -1,5 +1,5 @@
 
-# Prpos
+# Props
 
  name | type | default | description
  :---- | :---- | :------- | :-----------
