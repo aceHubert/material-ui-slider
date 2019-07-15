@@ -1,6 +1,6 @@
 {
   "name": "material-ui-slider",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "description": "Slider For Material-UI 1.0.0",
   "private": true,
   "author": "Hubert<yi.xiang@live.cn>",
@@ -54,7 +54,6 @@
     "eslint-plugin-react": "7.11.1",
     "marked": "^0.4.0",
     "prismjs": "^1.14.0",
-    "raf": "^3.4.0",
     "raw-loader": "^0.5.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
