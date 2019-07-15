@@ -1,6 +1,6 @@
 {
   "name": "material-ui-slider",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "Slider For Material-UI 1.0.0",
   "private": true,
   "author": "Hubert<yi.xiang@live.cn>",
@@ -33,6 +33,8 @@
     "prop-types": "^15.6.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
