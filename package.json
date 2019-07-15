@@ -1,6 +1,6 @@
 {
   "name": "material-ui-slider",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "Slider For Material-UI 1.0.0",
   "private": true,
   "author": "Hubert<yi.xiang@live.cn>",
@@ -26,9 +26,11 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "lodash": "^4.17.10",
-    "prop-types": "^15.6.1",
-    "raf": "^3.4.0"
+    "lodash.debounce": "^4.0.8",
+    "lodash.isequal": "^4.5.0",
+    "lodash.isnumber": "^3.0.3",
+    "lodash.isundefined": "^3.0.1",
+    "prop-types": "^15.6.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -37,15 +39,26 @@
     "@babel/standalone": "^7.0.0",
     "@material-ui/core": "^3.3.1",
     "@material-ui/icons": "^3.0.1",
+    "babel-eslint": "9.0.0",
+    "babel-jest": "23.6.0",
+    "babel-loader": "8.0.4",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.19",
     "codemirror": "5.38.0",
+    "eslint": "5.6.0",
+    "eslint-config-react-app": "^3.0.4",
+    "eslint-loader": "2.1.1",
+    "eslint-plugin-flowtype": "2.50.1",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.11.1",
     "marked": "^0.4.0",
     "prismjs": "^1.14.0",
+    "raf": "^3.4.0",
     "raw-loader": "^0.5.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-scripts": "^2.0.5",
+    "react-scripts": "2.0.5",
     "react-scripts-configs": "^0.0.12"
   },
   "browserslist": [
