@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import _ from "lodash";
-import debounce from "lodash/debounce";
+import isUndefined from "lodash.isundefined";
+import isEqual from "lodash.isequal";
+import isNumber from 'lodash.isnumber';
+import debounce from "lodash.debounce";
 import { withStyles } from "@material-ui/core/styles";
 import { Component } from "../../libs";
 import { calculateChange } from "../helpers/slider";
@@ -103,8 +105,8 @@ class Slider extends Component {
     range: false,
     scale: 0,
     direction: "horizontal",
-    onChange: () => {},
-    onChangeComplete: () => {}
+    onChange: () => { },
+    onChangeComplete: () => { }
   };
 
   min;
@@ -136,8 +138,8 @@ class Slider extends Component {
     this.min = Math.min(min, max);
     this.max = Math.max(min, max);
     if (
-      !_.isUndefined(nextProps.value) &&
-      !_.isEqual(nextProps.value, this.props.value)
+      !isUndefined(nextProps.value) &&
+      !isEqual(nextProps.value, this.props.value)
     ) {
       this.setState({
         value: this.calcDefaultValue(nextProps.value)
@@ -150,9 +152,9 @@ class Slider extends Component {
     const { min, max } = this;
     if (range) {
       let value = this.state ? this.state.value : [min, max];
-      if (_.isArray(defaultValue)) {
-        const value1 = _.isNumber(defaultValue[0]) ? defaultValue[0] : min;
-        const value2 = _.isNumber(defaultValue[1]) ? defaultValue[1] : max;
+      if (Array.isArray(defaultValue)) {
+        const value1 = isNumber(defaultValue[0]) ? defaultValue[0] : min;
+        const value2 = isNumber(defaultValue[1]) ? defaultValue[1] : max;
         const valueMin = Math.min(value1, value2);
         const valueMax = Math.max(value1, value2);
         value[0] = this.calcScaleValue(
@@ -161,7 +163,7 @@ class Slider extends Component {
         value[1] = this.calcScaleValue(
           valueMax >= min && valueMax <= max ? valueMax : max
         );
-      } else if (_.isNumber(defaultValue)) {
+      } else if (isNumber(defaultValue)) {
         const valueMin = this.calcScaleValue(defaultValue);
         if (valueMin <= value[1]) value[0] = valueMin;
         else value[1] = valueMin;
@@ -169,7 +171,7 @@ class Slider extends Component {
       return value;
     } else {
       return this.calcScaleValue(
-        _.isNumber(defaultValue) && defaultValue >= min && defaultValue <= max
+        isNumber(defaultValue) && defaultValue >= min && defaultValue <= max
           ? defaultValue
           : min
       );
@@ -212,7 +214,7 @@ class Slider extends Component {
     //保留小数位数
     let decimal = Math.abs(decimals);
     //如果scaleLength 为小数，保留相同小数位
-    decimal = decimal === 0 && scaleLength > 0 && String(scaleLength).indexOf('.') > 0 ? String(scaleLength).split('.')[1].length : decimal; 
+    decimal = decimal === 0 && scaleLength > 0 && String(scaleLength).indexOf('.') > 0 ? String(scaleLength).split('.')[1].length : decimal;
     let value = (offset / 100) * (max - min) + min;
     if (decimal > 0) {
       const pow = Math.pow(10, decimal);
@@ -368,19 +370,19 @@ class Slider extends Component {
         },
         vertical
           ? {
-              width: "100%",
-              bottom: `${offsetLeft}%`,
-              top: `${offsetRight}%`,
-              marginTop: disabled ? 6 : 0,
-              marginBottom: disabled ? 6 : 0
-            }
+            width: "100%",
+            bottom: `${offsetLeft}%`,
+            top: `${offsetRight}%`,
+            marginTop: disabled ? 6 : 0,
+            marginBottom: disabled ? 6 : 0
+          }
           : {
-              height: "100%",
-              left: `${offsetLeft}%`,
-              right: `${offsetRight}%`,
-              marginRight: disabled ? 6 : 0,
-              marginLeft: disabled ? 6 : 0
-            }
+            height: "100%",
+            left: `${offsetLeft}%`,
+            right: `${offsetRight}%`,
+            marginRight: disabled ? 6 : 0,
+            marginLeft: disabled ? 6 : 0
+          }
       );
 
       const trackLeftStyle = Object.assign(
@@ -390,21 +392,21 @@ class Slider extends Component {
         },
         vertical
           ? {
-              width: "100%",
-              height: disabled
-                ? `calc(${offsetLeft}% - 6px)`
-                : `calc(${offsetLeft}%)`,
-              marginTop: disabled ? 6 : 0,
-              bottom: 0
-            }
+            width: "100%",
+            height: disabled
+              ? `calc(${offsetLeft}% - 6px)`
+              : `calc(${offsetLeft}%)`,
+            marginTop: disabled ? 6 : 0,
+            bottom: 0
+          }
           : {
-              height: "100%",
-              width: disabled
-                ? `calc(${offsetLeft}% - 6px)`
-                : `calc(${offsetLeft}%)`,
-              marginRight: disabled ? 6 : 0,
-              left: 0
-            }
+            height: "100%",
+            width: disabled
+              ? `calc(${offsetLeft}% - 6px)`
+              : `calc(${offsetLeft}%)`,
+            marginRight: disabled ? 6 : 0,
+            left: 0
+          }
       );
 
       const trackRightStyle = Object.assign(
@@ -414,21 +416,21 @@ class Slider extends Component {
         },
         vertical
           ? {
-              width: "100%",
-              height: disabled
-                ? `calc(${offsetRight}% - 6px)`
-                : `calc(${offsetRight}%)`,
-              marginBottom: disabled ? 6 : 0,
-              top: 0
-            }
+            width: "100%",
+            height: disabled
+              ? `calc(${offsetRight}% - 6px)`
+              : `calc(${offsetRight}%)`,
+            marginBottom: disabled ? 6 : 0,
+            top: 0
+          }
           : {
-              height: "100%",
-              width: disabled
-                ? `calc(${offsetRight}% - 6px)`
-                : `calc(${offsetRight}%)`,
-              marginLeft: disabled ? 6 : 0,
-              right: 0
-            }
+            height: "100%",
+            width: disabled
+              ? `calc(${offsetRight}% - 6px)`
+              : `calc(${offsetRight}%)`,
+            marginLeft: disabled ? 6 : 0,
+            right: 0
+          }
       );
 
       const thumbLeftStyle = Object.assign(
@@ -437,13 +439,13 @@ class Slider extends Component {
         },
         vertical
           ? {
-              left: 0,
-              bottom: `${offsetLeft}%`
-            }
+            left: 0,
+            bottom: `${offsetLeft}%`
+          }
           : {
-              top: 0,
-              left: `${offsetLeft}%`
-            }
+            top: 0,
+            left: `${offsetLeft}%`
+          }
       );
 
       const thumbLeftClass = this.classNames(
@@ -451,17 +453,17 @@ class Slider extends Component {
         disabled && classes.pointerDisabled,
         vertical && classes.pointerVertical,
         this.activePointer === "left" &&
-          !disabled &&
-          (hover || pressed) &&
-          classes.pointerOver,
+        !disabled &&
+        (hover || pressed) &&
+        classes.pointerOver,
         this.activePointer === "left" &&
-          !disabled &&
-          hover &&
-          classes.pointerHover,
+        !disabled &&
+        hover &&
+        classes.pointerHover,
         this.activePointer === "left" &&
-          !disabled &&
-          pressed &&
-          classes.pointerPressed
+        !disabled &&
+        pressed &&
+        classes.pointerPressed
       );
 
       const thumbRightStyle = Object.assign(
@@ -470,13 +472,13 @@ class Slider extends Component {
         },
         vertical
           ? {
-              left: 0,
-              top: `${offsetRight}%`
-            }
+            left: 0,
+            top: `${offsetRight}%`
+          }
           : {
-              top: 0,
-              right: `${offsetRight}%`
-            }
+            top: 0,
+            right: `${offsetRight}%`
+          }
       );
 
       const thumbRightClass = this.classNames(
@@ -486,17 +488,17 @@ class Slider extends Component {
         vertical && classes.pointerVertical,
         vertical && classes.pointerVerticalTop,
         this.activePointer === "right" &&
-          !disabled &&
-          (hover || pressed) &&
-          classes.pointerOver,
+        !disabled &&
+        (hover || pressed) &&
+        classes.pointerOver,
         this.activePointer === "right" &&
-          !disabled &&
-          hover &&
-          classes.pointerHover,
+        !disabled &&
+        hover &&
+        classes.pointerHover,
         this.activePointer === "right" &&
-          !disabled &&
-          pressed &&
-          classes.pointerPressed
+        !disabled &&
+        pressed &&
+        classes.pointerPressed
       );
 
       trackEl = (
@@ -538,17 +540,17 @@ class Slider extends Component {
         },
         vertical
           ? {
-              width: "100%",
-              height: disabled ? `calc(${offset}% - 6px)` : `calc(${offset}%)`,
-              marginTop: disabled ? 6 : 0,
-              bottom: 0
-            }
+            width: "100%",
+            height: disabled ? `calc(${offset}% - 6px)` : `calc(${offset}%)`,
+            marginTop: disabled ? 6 : 0,
+            bottom: 0
+          }
           : {
-              height: "100%",
-              width: disabled ? `calc(${offset}% - 6px)` : `calc(${offset}%)`,
-              marginRight: disabled ? 6 : 0,
-              left: 0
-            }
+            height: "100%",
+            width: disabled ? `calc(${offset}% - 6px)` : `calc(${offset}%)`,
+            marginRight: disabled ? 6 : 0,
+            left: 0
+          }
       );
 
       const trackStyle = Object.assign(
@@ -558,21 +560,21 @@ class Slider extends Component {
         },
         vertical
           ? {
-              width: "100%",
-              height: disabled
-                ? `calc(${100 - offset}% - 6px)`
-                : `calc(${100 - offset}%)`,
-              marginBottom: disabled ? 6 : 0,
-              top: 0
-            }
+            width: "100%",
+            height: disabled
+              ? `calc(${100 - offset}% - 6px)`
+              : `calc(${100 - offset}%)`,
+            marginBottom: disabled ? 6 : 0,
+            top: 0
+          }
           : {
-              height: "100%",
-              width: disabled
-                ? `calc(${100 - offset}% - 6px)`
-                : `calc(${100 - offset}%)`,
-              marginLeft: disabled ? 6 : 0,
-              right: 0
-            }
+            height: "100%",
+            width: disabled
+              ? `calc(${100 - offset}% - 6px)`
+              : `calc(${100 - offset}%)`,
+            marginLeft: disabled ? 6 : 0,
+            right: 0
+          }
       );
 
       const thumbStyle = Object.assign(
@@ -581,13 +583,13 @@ class Slider extends Component {
         },
         vertical
           ? {
-              left: 0,
-              bottom: `${offset}%`
-            }
+            left: 0,
+            bottom: `${offset}%`
+          }
           : {
-              top: 0,
-              left: `${offset}%`
-            }
+            top: 0,
+            left: `${offset}%`
+          }
       );
 
       const thumbClass = this.classNames(
@@ -634,17 +636,17 @@ class Slider extends Component {
               },
               vertical
                 ? {
-                    width: "100%",
-                    height: 2,
-                    left: 0,
-                    bottom: `${scaleOffset}%`
-                  }
+                  width: "100%",
+                  height: 2,
+                  left: 0,
+                  bottom: `${scaleOffset}%`
+                }
                 : {
-                    height: "100%",
-                    width: 2,
-                    top: 0,
-                    left: `${scaleOffset}%`
-                  }
+                  height: "100%",
+                  width: 2,
+                  top: 0,
+                  left: `${scaleOffset}%`
+                }
             );
             if (
               (range && (scaleValue > value[0] && scaleValue < value[1])) ||

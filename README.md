@@ -44,24 +44,5 @@ Here's a quick example to get you started:
  onChange | func |  | Callback fired when the value is changed.<br>__Signature:__ <br> function(value: number/array[number,number]) => void
  onChangeComplete | func |  | Callback fired when the value is changed completely.<br>__Signature:__ <br> function(value: number/array[number,number]) => void
 
-## Update 
-
-> v3.0.4
-* Added prop "decimals".
-
-> v3.0.3
-* fixed [#11](https://github.com/aceHubert/material-ui-slider/issues/11) bug
-
-> v3.0.0
-* Upgrade peerDependencies "@material-ui/core" to be "^3.0.0"
-* Remove some unnessesary files from package
-
-> v0.1.11
-* Allow dynamic update to min/max value
-
-> v0.1.0
-* Added prop "value".
-
-
 ## LICENSE
 [MIT](https://choosealicense.com/licenses/mit/)

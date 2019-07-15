@@ -12,12 +12,13 @@ if [ $? = 0 ]; then
 
   # babel transform es6 into es5
   babel src --out-dir dist/npm/es5/src 
-  babel libs --out-dir dist/npm/es5/libs 
-  babel builds/npm/index.js --out-file dist/npm/es5/index.js 
+  babel libs --out-dir dist/npm/es5/libs --ignore "libs/editor,libs/markdown"
+  cp builds/npm/index.js dist/npm/es5/index.js 
+  babel dist/npm/es5/index.js --out-file dist/npm/es5/index.js
 
   # keep es6 for next.js
   # babel src --out-dir dist/npm/es6/src --copy-files
-  # babel libs --out-dir dist/npm/es6/libs --copy-files
+  # babel libs --out-dir dist/npm/es6/libs --ignore "libs/editor,libs/markdown" --copy-files 
   # cp builds/npm/next.js dist/npm/next.es6.js
 
   # copy package.json
