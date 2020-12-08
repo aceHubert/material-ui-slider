@@ -93,6 +93,9 @@ const styles = theme => ({
   },
   scale: {
     position: "absolute"
+  },
+  noAnimations:{
+    transition: 'unset'
   }
 });
 
@@ -108,6 +111,18 @@ class Slider extends Component {
     onChange: () => { },
     onChangeComplete: () => { }
   };
+
+  static defaultProps={
+    min:0,
+    max:100,
+    defaultValue:0,
+    range:false,
+    scale:0,
+    logarithmicScale: false,
+    direction:'horizontal',
+    onChange:()=>{},
+    onChangeComplete:()=>{}
+  }
 
   min;
   max;
@@ -321,7 +336,8 @@ class Slider extends Component {
       scaleLength,
       direction,
       color,
-      disabled
+      disabled,
+      noAnimations
     } = this.props;
     const { value, hover, pressed } = this.state;
     const { min, max } = this;
@@ -452,6 +468,7 @@ class Slider extends Component {
         classes.pointer,
         disabled && classes.pointerDisabled,
         vertical && classes.pointerVertical,
+        noAnimations && classes.noAnimations,
         this.activePointer === "left" &&
         !disabled &&
         (hover || pressed) &&
@@ -487,6 +504,7 @@ class Slider extends Component {
         disabled && classes.pointerDisabled,
         vertical && classes.pointerVertical,
         vertical && classes.pointerVerticalTop,
+        noAnimations && classes.noAnimations,
         this.activePointer === "right" &&
         !disabled &&
         (hover || pressed) &&
@@ -596,6 +614,7 @@ class Slider extends Component {
         classes.pointer,
         disabled && classes.pointerDisabled,
         vertical && classes.pointerVertical,
+        noAnimations && classes.noAnimations,
         !disabled && (hover || pressed) && classes.pointerOver,
         !disabled && hover && classes.pointerHover,
         pressed && classes.pointerPressed
